@@ -1,0 +1,24 @@
+{
+  "scopedRegistries": [
+    {
+      "name": "Unity NuGet",
+      "url": "https://unitynuget-registry.azurewebsites.net",
+      "scopes": [
+        "org.nuget"
+      ]
+    },
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
+    }
+  ],
+  "dependencies": {
+    "jp.keijiro.akvfx": "1.0.1",
+    "jp.keijiro.kino.post-processing": "2.1.12",
+    "jp.keijiro.klak.motion": "1.0.1",
+    "jp.keijiro.metamesh": "0.0.4"
+  }
+}
