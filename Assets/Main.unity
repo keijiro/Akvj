@@ -309,6 +309,11 @@ MonoBehaviour:
   - {fileID: 381522310}
   - {fileID: 2005235034}
   - {fileID: 399741232}
+  _fadingDuration: 4
+  _vfxDurationMin: 10
+  _vfxDurationMax: 120
+  _hueDuration: 120
+  _randomSeed: 336
 --- !u!4 &342910319
 Transform:
   m_ObjectHideFlags: 0

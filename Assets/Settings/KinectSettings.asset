@@ -23,4 +23,4 @@ MonoBehaviour:
   _gain: 1
   _enableBlc: 0
   _powerIs60Hz: 1
-  _maxDepth: 3
+  _maxDepth: 2
