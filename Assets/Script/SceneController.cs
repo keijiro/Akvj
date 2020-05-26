@@ -11,6 +11,8 @@ class SceneController : MonoBehaviour
 {
     #region Editable attributes
 
+    [SerializeField] Renderer _surface = null;
+    [SerializeField] VisualEffect _vfxSurface = null;
     [SerializeField] VisualEffect[] _vfxGroup1 = null;
     [SerializeField] VisualEffect[] _vfxGroup2 = null;
     [SerializeField] float _fadingDuration = 3;
@@ -25,7 +27,13 @@ class SceneController : MonoBehaviour
 
     void Start()
     {
+    #if !UNITY_EDITOR
+        Cursor.visible = false;
+    #endif
+
         PrepareRandom();
+
+        StartCoroutine(SurfaceCoroutine());
         StartCoroutine(VfxCoroutine(_vfxGroup1));
         StartCoroutine(VfxCoroutine(_vfxGroup2));
         StartCoroutine(ColorCoroutine());
@@ -34,6 +42,20 @@ class SceneController : MonoBehaviour
     #endregion
 
     #region Controller coroutines
+
+    IEnumerator SurfaceCoroutine()
+    {
+        while (true)
+        {
+            while (!IsVfxAbsent && !_vfxSurface.enabled) yield return null;
+
+            _surface.enabled = true;
+
+            while (IsVfxAbsent || _vfxSurface.enabled) yield return null;
+
+            _surface.enabled = false;
+        }
+    }
 
     IEnumerator VfxCoroutine(VisualEffect[] vfxGroup)
     {
@@ -67,6 +89,8 @@ class SceneController : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         vfx.enabled = false;
+
+        yield return new WaitForSeconds(RandomVfxDuration);
     }
 
     IEnumerator ColorCoroutine()
@@ -102,6 +126,10 @@ class SceneController : MonoBehaviour
     }
 
     Random _random;
+
+    bool IsVfxAbsent
+      => _vfxGroup1.All(vfx => !vfx.enabled) &&
+         _vfxGroup2.All(vfx => !vfx.enabled);
 
     float FaderDelta
       => Time.deltaTime / _fadingDuration;
