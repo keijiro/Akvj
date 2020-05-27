@@ -71,11 +71,20 @@ sealed class SceneController : MonoBehaviour
 
         vfx.SetFloat(IDs.Fader, 0);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
 
         vfx.enabled = false;
 
-        yield return new WaitForSeconds(RandomVfxDuration);
+        yield return null; // One frame delay
+        yield return WaitWhileAnyActive(RandomVfxDuration);
+
+        vfx.enabled = true;
+    }
+
+    IEnumerator WaitWhileAnyActive(float duration)
+    {
+        for (var t = 0.0f; t < duration; t += Time.deltaTime)
+            if (IsVfxAbsent)  break; else yield return null;
     }
 
     IEnumerator ColorCoroutine()
