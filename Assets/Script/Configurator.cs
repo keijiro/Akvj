@@ -49,10 +49,6 @@ sealed class Configurator : MonoBehaviour
 
     IEnumerator Start()
     {
-        #if !UNITY_EDITOR
-        Cursor.visible = false;
-        #endif
-
         while (true)
         {
             StartConfiguration();
@@ -69,6 +65,10 @@ sealed class Configurator : MonoBehaviour
 
     void StartConfiguration()
     {
+        #if !UNITY_EDITOR
+        Cursor.visible = true;
+        #endif
+
         _uiRoot.SetActive(true);
         _effectRoot.SetActive(false);
         _debugVfx.enabled = true;
@@ -85,6 +85,10 @@ sealed class Configurator : MonoBehaviour
 
     void EndConfiguration()
     {
+        #if !UNITY_EDITOR
+        Cursor.visible = false;
+        #endif
+
         _uiRoot.SetActive(false);
         _effectRoot.SetActive(true);
         _debugVfx.enabled = false;

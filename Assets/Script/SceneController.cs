@@ -72,8 +72,6 @@ sealed class SceneController : MonoBehaviour
 
         yield return null; // One frame delay
         yield return WaitWhileAnyActive(RandomVfxDuration);
-
-        vfx.enabled = true;
     }
 
     IEnumerator WaitWhileAnyActive(float duration)
