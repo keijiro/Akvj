@@ -27,12 +27,7 @@ sealed class SceneController : MonoBehaviour
 
     void Start()
     {
-    #if !UNITY_EDITOR
-        Cursor.visible = false;
-    #endif
-
         PrepareRandom();
-
         StartCoroutine(VfxCoroutine(_vfxGroup1));
         StartCoroutine(VfxCoroutine(_vfxGroup2));
         StartCoroutine(ColorCoroutine());

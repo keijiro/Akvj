@@ -16,6 +16,7 @@
     }
   ],
   "dependencies": {
+    "com.unity.ugui": "1.0.0",
     "jp.keijiro.akvfx": "1.0.1",
     "jp.keijiro.kino.post-processing": "2.1.12",
     "jp.keijiro.klak.motion": "1.0.1",
