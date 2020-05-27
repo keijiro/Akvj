@@ -7,12 +7,12 @@ using Guid = System.Guid;
 using IEnumerator = System.Collections.IEnumerator;
 using Random = Unity.Mathematics.Random;
 
-class SceneController : MonoBehaviour
+namespace Akvj {
+
+sealed class SceneController : MonoBehaviour
 {
     #region Editable attributes
 
-    [SerializeField] Renderer _surface = null;
-    [SerializeField] VisualEffect _vfxSurface = null;
     [SerializeField] VisualEffect[] _vfxGroup1 = null;
     [SerializeField] VisualEffect[] _vfxGroup2 = null;
     [SerializeField] float _fadingDuration = 3;
@@ -33,7 +33,6 @@ class SceneController : MonoBehaviour
 
         PrepareRandom();
 
-        StartCoroutine(SurfaceCoroutine());
         StartCoroutine(VfxCoroutine(_vfxGroup1));
         StartCoroutine(VfxCoroutine(_vfxGroup2));
         StartCoroutine(ColorCoroutine());
@@ -42,20 +41,6 @@ class SceneController : MonoBehaviour
     #endregion
 
     #region Controller coroutines
-
-    IEnumerator SurfaceCoroutine()
-    {
-        while (true)
-        {
-            while (!IsVfxAbsent && !_vfxSurface.enabled) yield return null;
-
-            _surface.enabled = true;
-
-            while (IsVfxAbsent || _vfxSurface.enabled) yield return null;
-
-            _surface.enabled = false;
-        }
-    }
 
     IEnumerator VfxCoroutine(VisualEffect[] vfxGroup)
     {
@@ -159,4 +144,6 @@ class SceneController : MonoBehaviour
     }
 
     #endregion
+}
+
 }

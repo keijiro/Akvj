@@ -390,7 +390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &342910318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,8 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9baebebd3b1c72b41a08c04be0e362eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surface: {fileID: 853405457}
-  _vfxSurface: {fileID: 1799391759}
   _vfxGroup1:
   - {fileID: 462960742}
   - {fileID: 1181393330}
@@ -412,6 +410,8 @@ MonoBehaviour:
   - {fileID: 1650439697}
   - {fileID: 1277810191}
   - {fileID: 1799391759}
+  - {fileID: 622753428}
+  - {fileID: 29323827}
   _vfxGroup2:
   - {fileID: 2089869441}
   - {fileID: 1517745697}
@@ -1405,10 +1405,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 557351948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a876871a9c5511a4890835f84ed9b0a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 68048450a9c72ed4dac1c129aba60064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _device: {fileID: 1343432287}
+  _masterVfx: {fileID: 29323827}
 --- !u!1 &622753425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1757,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853405455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1805,10 +1806,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 853405455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a876871a9c5511a4890835f84ed9b0a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 68048450a9c72ed4dac1c129aba60064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _device: {fileID: 1343432287}
+  _masterVfx: {fileID: 1799391759}
 --- !u!1 &922460429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2876,10 +2878,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1860034909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a876871a9c5511a4890835f84ed9b0a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 68048450a9c72ed4dac1c129aba60064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _device: {fileID: 1343432287}
+  _masterVfx: {fileID: 622753428}
 --- !u!1 &1950470027
 GameObject:
   m_ObjectHideFlags: 0
