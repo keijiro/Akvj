@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 237832322}
   - component: {fileID: 237832321}
   m_Layer: 5
-  m_Name: Camera Offset
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,8 +2050,9 @@ GameObject:
   m_Component:
   - component: {fileID: 697559306}
   - component: {fileID: 697559307}
+  - component: {fileID: 697559308}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Depth Threshold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2140,6 +2141,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &697559308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697559305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb4da91bf635094298dab690ea6a62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &754250455
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2aee4cb2a3c43346aebc7e6c120c971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiRoot: {fileID: 1129265294}
   _effectRoot: {fileID: 2145728958}
   _debugVfx: {fileID: 841514773}
   _cameraRoot: {fileID: 1918614867}
@@ -3328,8 +3342,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1517627083}
   - component: {fileID: 1517627084}
+  - component: {fileID: 1517627085}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3418,6 +3433,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1517627085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517627082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb4da91bf635094298dab690ea6a62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1517745695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,7 +3922,7 @@ GameObject:
   - component: {fileID: 1802692711}
   - component: {fileID: 1802692710}
   m_Layer: 5
-  m_Name: Depth Threshold
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
