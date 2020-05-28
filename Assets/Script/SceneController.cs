@@ -89,9 +89,8 @@ sealed class SceneController : MonoBehaviour
         {
             hue += Time.deltaTime / _hueDuration;
 
-            var keyColor = HueToRgb(hue);
-            var altColor = HueToRgb(hue + 1.0f / 3);
-            var revColor = HueToRgb(hue + 2.0f / 3);
+            var keyColor = Color.HSVToRGB((hue         ) % 1, 1, 1);
+            var altColor = Color.HSVToRGB((hue + 0.333f) % 1, 1, 1);
 
             foreach (var vfx in _vfxGroup1)
                 SetKeyColors(vfx, keyColor, altColor);
@@ -99,7 +98,7 @@ sealed class SceneController : MonoBehaviour
             foreach (var vfx in _vfxGroup2)
                 SetKeyColors(vfx, keyColor, altColor);
 
-            _fillLight.color = revColor;
+            _fillLight.color = Color.HSVToRGB((hue + 0.666f) % 1, 0.4f, 1);
 
             yield return null;
         }
