@@ -45,6 +45,16 @@ sealed class Configurator : MonoBehaviour
 
     #endregion
 
+    #region Private utility properties
+
+    Transform CameraTransform
+      => _cameraRoot.GetComponentInChildren<Camera>().transform;
+
+    BrownianMotion[] CameraMotions
+      => _cameraRoot.GetComponentsInChildren<BrownianMotion>();
+
+    #endregion
+
     #region MonoBehaviour implementation
 
     IEnumerator Start()
@@ -74,8 +84,9 @@ sealed class Configurator : MonoBehaviour
         _debugVfx.enabled = true;
         _targetIndicator.enabled = true;
 
-        foreach
-          (var motion in _cameraRoot.GetComponentsInChildren<BrownianMotion>())
+        CameraTransform.localPosition = -Vector3.forward;
+
+        foreach (var motion in CameraMotions)
         {
             motion.transform.localPosition = Vector3.zero;
             motion.transform.localRotation = Quaternion.identity;
@@ -94,8 +105,9 @@ sealed class Configurator : MonoBehaviour
         _debugVfx.enabled = false;
         _targetIndicator.enabled = false;
 
-        foreach
-          (var motion in _cameraRoot.GetComponentsInChildren<BrownianMotion>())
+        CameraTransform.localPosition = Vector3.zero;
+
+        foreach (var motion in CameraMotions)
             motion.enabled = true;
     }
 

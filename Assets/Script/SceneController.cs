@@ -15,6 +15,7 @@ sealed class SceneController : MonoBehaviour
 
     [SerializeField] VisualEffect[] _vfxGroup1 = null;
     [SerializeField] VisualEffect[] _vfxGroup2 = null;
+    [SerializeField] Light _fillLight = null;
     [SerializeField] float _fadingDuration = 3;
     [SerializeField] float _vfxDurationMin = 1;
     [SerializeField] float _vfxDurationMax = 10;
@@ -90,12 +91,15 @@ sealed class SceneController : MonoBehaviour
 
             var keyColor = HueToRgb(hue);
             var altColor = HueToRgb(hue + 1.0f / 3);
+            var revColor = HueToRgb(hue + 2.0f / 3);
 
             foreach (var vfx in _vfxGroup1)
                 SetKeyColors(vfx, keyColor, altColor);
 
             foreach (var vfx in _vfxGroup2)
                 SetKeyColors(vfx, keyColor, altColor);
+
+            _fillLight.color = revColor;
 
             yield return null;
         }
