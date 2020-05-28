@@ -3652,6 +3652,8 @@ GameObject:
   - component: {fileID: 1343432286}
   - component: {fileID: 1343432287}
   - component: {fileID: 1343432288}
+  - component: {fileID: 1343432290}
+  - component: {fileID: 1343432291}
   - component: {fileID: 1343432285}
   - component: {fileID: 1343432289}
   m_Layer: 0
@@ -3674,25 +3676,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vfxGroup1:
-  - {fileID: 462960742}
   - {fileID: 1181393330}
-  - {fileID: 125749347}
-  - {fileID: 1650439697}
-  - {fileID: 1277810191}
-  - {fileID: 1799391759}
-  - {fileID: 622753428}
-  - {fileID: 29323827}
   _vfxGroup2:
   - {fileID: 2089869441}
-  - {fileID: 1517745697}
-  - {fileID: 381522310}
-  - {fileID: 2005235034}
-  - {fileID: 399741232}
-  _fillLight: {fileID: 350862468}
   _fadingDuration: 4
-  _vfxDurationMin: 30
-  _vfxDurationMax: 120
-  _hueDuration: 180
+  _vfxDurationMin: 3000000
+  _vfxDurationMax: 12000000
   _randomSeed: 336
 --- !u!4 &1343432286
 Transform:
@@ -3761,6 +3750,67 @@ MonoBehaviour:
   _vfxDurationMax: 240
   _noiseFrequency: 0.03
   _randomSeed: 77
+--- !u!114 &1343432290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343432284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956fceba91319c44e8987010eff85af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hueDuration: 170
+--- !u!114 &1343432291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343432284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95efa4f50fa5b6940a6159c957a22a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyLight: {fileID: 471110418}
+  _fillLight: {fileID: 350862468}
+  _dimmerFrequency: 0.03
+  _dimmerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1398935461
 GameObject:
   m_ObjectHideFlags: 0

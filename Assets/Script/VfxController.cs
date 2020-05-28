@@ -3,23 +3,20 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 using Unity.Mathematics;
-using Guid = System.Guid;
 using IEnumerator = System.Collections.IEnumerator;
 using Random = Unity.Mathematics.Random;
 
 namespace Akvj {
 
-sealed class SceneController : MonoBehaviour
+sealed class VfxController : MonoBehaviour
 {
     #region Editable attributes
 
     [SerializeField] VisualEffect[] _vfxGroup1 = null;
     [SerializeField] VisualEffect[] _vfxGroup2 = null;
-    [SerializeField] Light _fillLight = null;
     [SerializeField] float _fadingDuration = 3;
     [SerializeField] float _vfxDurationMin = 1;
     [SerializeField] float _vfxDurationMax = 10;
-    [SerializeField] float _hueDuration = 10;
     [SerializeField] uint _randomSeed = 0;
 
     #endregion
@@ -29,9 +26,17 @@ sealed class SceneController : MonoBehaviour
     void Start()
     {
         PrepareRandom();
+        _colorMaster = GetComponent<ColorMaster>();
         StartCoroutine(VfxCoroutine(_vfxGroup1));
         StartCoroutine(VfxCoroutine(_vfxGroup2));
-        StartCoroutine(ColorCoroutine());
+    }
+
+    void Update()
+    {
+        var keyColor = _colorMaster.KeyColor;
+        var altColor = _colorMaster.GetOffsetColor(1.0f / 3);
+        foreach (var vfx in _vfxGroup1) SetVfxColors(vfx, keyColor, altColor);
+        foreach (var vfx in _vfxGroup2) SetVfxColors(vfx, keyColor, altColor);
     }
 
     #endregion
@@ -81,29 +86,6 @@ sealed class SceneController : MonoBehaviour
             if (IsVfxAbsent)  break; else yield return null;
     }
 
-    IEnumerator ColorCoroutine()
-    {
-        var hue = 0.0f;
-
-        while (true)
-        {
-            hue += Time.deltaTime / _hueDuration;
-
-            var keyColor = Color.HSVToRGB((hue         ) % 1, 1, 1);
-            var altColor = Color.HSVToRGB((hue + 0.333f) % 1, 1, 1);
-
-            foreach (var vfx in _vfxGroup1)
-                SetKeyColors(vfx, keyColor, altColor);
-
-            foreach (var vfx in _vfxGroup2)
-                SetKeyColors(vfx, keyColor, altColor);
-
-            _fillLight.color = Color.HSVToRGB((hue + 0.666f) % 1, 0.4f, 1);
-
-            yield return null;
-        }
-    }
-
     #endregion
 
     #region Private members
@@ -115,6 +97,7 @@ sealed class SceneController : MonoBehaviour
         public static int AltColor = Shader.PropertyToID("AltColor");
     }
 
+    ColorMaster _colorMaster;
     Random _random;
 
     bool IsVfxAbsent
@@ -127,9 +110,6 @@ sealed class SceneController : MonoBehaviour
     float RandomVfxDuration
       => _random.NextFloat(_vfxDurationMin, _vfxDurationMax);
 
-    Color HueToRgb(float hue)
-      => Color.HSVToRGB(hue % 1, 1, 1);
-
     void PrepareRandom()
     {
         _random = new Random(_randomSeed);
@@ -138,11 +118,12 @@ sealed class SceneController : MonoBehaviour
         _random.NextUInt();
     }
 
-    void SetKeyColors(VisualEffect vfx, Color keyColor, Color altColor)
+    void SetVfxColors(VisualEffect vfx, Color keyColor, Color altColor)
     {
         if (!vfx.enabled) return;
 
-        vfx.SetVector4(IDs.KeyColor, keyColor);
+        if (vfx.HasVector4(IDs.KeyColor))
+            vfx.SetVector4(IDs.KeyColor, keyColor);
 
         if (vfx.HasVector4(IDs.AltColor))
             vfx.SetVector4(IDs.AltColor, altColor);
