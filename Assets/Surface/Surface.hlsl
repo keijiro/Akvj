@@ -6,16 +6,10 @@ float3 GetEffectDirection()
     return lerp(float3(0, 1, 0), float3(1, 0, 0), sel);
 }
 
-float GetEffectParameter()
+float GetEffectParameter(float seed)
 {
-    float n = snoise(float2(_Time.y / 18, 7.334));
+    float n = snoise(float2(_Time.y / 18, 3.141592 * seed));
     return saturate(0.5 + n * 0.7);
-}
-
-float GetIntensityBoost()
-{
-    float n = snoise(float2(_Time.y / 16, 3.174));
-    return 1 + (n < 0 ? n : n * 30);
 }
 
 void ContourLines_float
@@ -24,7 +18,7 @@ void ContourLines_float
 {
     float t = _Time.y;
     float x = dot(position, GetEffectDirection());
-    float rep = lerp(50, 150, GetEffectParameter());
+    float rep = lerp(50, 150, GetEffectParameter(0));
 
     // Contour using derivatives
     float x2 = x * rep + t * 3;
@@ -44,7 +38,7 @@ void ContourLines_float
     float a = snoise(uv * 100) / 2 + 0.5 < fader;
 
     // Boost
-    c *= GetIntensityBoost();
+    c *= GetEffectParameter(1);
 
     // Output
     output = float4(c, a);
@@ -65,13 +59,13 @@ void MovingSlits_float
 
     // Color selection
     float sel = snoise(float2(x * 4.31 - t * 0.21, t * 0.619));
-    float3 c = lerp(keyColor, altColor, smoothstep(0.5, 0.6, sel)) * 20;
+    float3 c = lerp(keyColor, altColor, smoothstep(0.5, 0.6, sel));
 
-    // Boost
-    c *= GetIntensityBoost();
+    // Amplification
+    c *= smoothstep(0.5, 1, GetEffectParameter(0)) * 100;
 
     // Alpha threshold
-    float thresh = lerp(0.1, 0.5, GetEffectParameter()) * fader;
+    float thresh = lerp(0.1, 0.7, GetEffectParameter(1)) * fader;
 
     // Output
     output = float4(c, g < thresh);
@@ -88,8 +82,8 @@ void SlidingRects_float
 
     // Parameters
     uint seed = (y + 10) * 50;
-    float wid = lerp(0.1, 0.5, Hash(seed * 2));
-    float spd = lerp(0.5, 1.5, Hash(seed * 2 + 1));
+    float wid = lerp(0.5, 1.5, Hash(seed * 2));
+    float spd = lerp(1.0, 3.5, Hash(seed * 2 + 1));
 
     // Rows
     float p = wid * x + spd * t;
@@ -97,13 +91,13 @@ void SlidingRects_float
 
     // Random color
     float sel = Hash(seed * 37 + (uint)p);
-    float3 c = lerp(keyColor, altColor, sel > 0.5) * 10;
+    float3 c = lerp(keyColor, altColor, sel > 0.5);
 
-    // Boost
-    c *= GetIntensityBoost();
+    // Amplification
+    c *= smoothstep(0.3, 1, GetEffectParameter(0)) * 100;
 
     // Alpha threshold
-    float thresh = lerp(0.1, 0.5, GetEffectParameter()) * fader;
+    float thresh = lerp(0.1, 0.75, GetEffectParameter(1)) * fader;
 
     // Output
     output = float4(c, g < thresh);
