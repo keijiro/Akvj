@@ -27,8 +27,8 @@ sealed class VfxController : MonoBehaviour
     {
         PrepareRandom();
         _colorMaster = GetComponent<ColorMaster>();
-        StartCoroutine(VfxCoroutine(_vfxGroup1));
-        StartCoroutine(VfxCoroutine(_vfxGroup2));
+        StartCoroutine(VfxCoroutine(_vfxGroup1, 0.1f));
+        StartCoroutine(VfxCoroutine(_vfxGroup2, 1));
     }
 
     void Update()
@@ -43,11 +43,17 @@ sealed class VfxController : MonoBehaviour
 
     #region Controller coroutines
 
-    IEnumerator VfxCoroutine(VisualEffect[] vfxGroup)
+    IEnumerator VfxCoroutine(VisualEffect[] vfxGroup, float interval)
     {
         while (true)
+        {
             foreach (var vfx in vfxGroup.OrderBy(e => _random.NextUInt()))
+            {
                 yield return VfxSingleCoroutine(vfx);
+                yield return null;
+                yield return WaitWhileAnyActive(RandomVfxDuration * interval);
+            }
+        }
     }
 
     IEnumerator VfxSingleCoroutine(VisualEffect vfx)
@@ -75,9 +81,6 @@ sealed class VfxController : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         vfx.enabled = false;
-
-        yield return null; // One frame delay
-        yield return WaitWhileAnyActive(RandomVfxDuration);
     }
 
     IEnumerator WaitWhileAnyActive(float duration)
