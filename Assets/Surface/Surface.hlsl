@@ -81,7 +81,8 @@ void SlidingRects_float
     float y = dot(position, dir.yx);
 
     // Parameters
-    uint seed = (y + 10) * 50;
+    float rows = lerp(20, 100, GetEffectParameter(2));
+    uint seed = y * rows + 1000;
     float wid = lerp(0.5, 1.5, Hash(seed * 2));
     float spd = lerp(1.0, 3.5, Hash(seed * 2 + 1));
 

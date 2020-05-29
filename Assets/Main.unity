@@ -3799,7 +3799,7 @@ MonoBehaviour:
   _fadingDuration: 4
   _vfxDurationMin: 60
   _vfxDurationMax: 240
-  _randomSeed: 1388
+  _randomSeed: 3890
 --- !u!4 &1343432286
 Transform:
   m_ObjectHideFlags: 0
