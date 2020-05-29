@@ -3799,7 +3799,7 @@ MonoBehaviour:
   _fadingDuration: 4
   _vfxDurationMin: 60
   _vfxDurationMax: 240
-  _randomSeed: 336
+  _randomSeed: 1388
 --- !u!4 &1343432286
 Transform:
   m_ObjectHideFlags: 0
@@ -3928,6 +3928,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _fillFrequency: 0.05
 --- !u!1 &1398935461
 GameObject:
   m_ObjectHideFlags: 0

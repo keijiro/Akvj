@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _autoExposure: 1
   _exposure: -6
-  _autoWhiteBalance: 0
+  _autoWhiteBalance: 1
   _whiteBalance: 4070
   _brightness: 0.6
   _contrast: 0.5
