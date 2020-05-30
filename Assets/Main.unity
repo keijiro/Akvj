@@ -1078,6 +1078,7 @@ VFXRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3944,10 +3945,12 @@ MonoBehaviour:
   - {fileID: 381522310}
   - {fileID: 2005235034}
   - {fileID: 399741232}
+  - {fileID: 2089869441}
+  - {fileID: 1517745697}
   _fadingDuration: 4
-  _vfxDurationMin: 60
-  _vfxDurationMax: 240
-  _randomSeed: 3890
+  _vfxDurationMin: 20
+  _vfxDurationMax: 60
+  _randomSeed: 7092
 --- !u!4 &1343432286
 Transform:
   m_ObjectHideFlags: 0
